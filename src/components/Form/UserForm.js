@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import FormUserDetails from './FormUserDetails'
-
+import FormUserDetails from './FormUserDetail.js'
+import FormPersonalDetails from './FormPersonalDetails.js'
+//import Success from './Succes.js'
+import Confirm from './Confirm.js'
 export class UserForm extends Component {
   state = {
     step: 1,
@@ -9,11 +11,7 @@ export class UserForm extends Component {
     destinatie: '',
     contactDestinatar: '',
     greutate: '',
-    categorie: {
-      fragil,
-      pretios,
-      periculos,
-    },
+    categorie: '',
   }
   nextStep = () => {
     const { step } = this.state
@@ -51,16 +49,28 @@ export class UserForm extends Component {
         return (
           <FormUserDetails
             nextStep={this.nextStep}
+            prevStep={this.prevStep}
             handleChange={this.handleChange}
             values={values}
           />
         )
       case 2:
-        return <h1>FormPersonalDetails</h1>
+        return (
+          <FormPersonalDetails
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        )
       case 3:
-        return <h1>Confirm</h1>
-      case 4:
-        return <h1>Success</h1>
+        return (
+          <Confirm
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            values={values}
+          />
+        )
     }
   }
 }

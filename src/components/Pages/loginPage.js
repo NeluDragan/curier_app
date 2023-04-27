@@ -2,9 +2,31 @@ import React from 'react'
 import { Avatar, Button, Grid, Paper, TextField } from '@mui/material'
 import LockIcon from '@mui/icons-material/Lock'
 import { useNavigate } from 'react-router-dom'
-import colors from './colors'
+import colors from '../comp/colors'
+import { useState } from 'react'
+import UserProfile from '../Classes/UserProfile'
+import user from '../Classes/user'
 
-const Login = () => {
+//import { useState } from 'react'
+
+// const f = ({ endpoint, body }) => {
+//   // {
+//   //   username: '',
+//   //   email: email,
+//   //   fullname: '',
+//   //   password: password,
+//   // }
+//   const requestOptions = {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(body),
+//   }
+//   fetch('http://127.0.0.1:8000/' + endpoint, requestOptions)
+//     .then((response) => response.json())
+//     .then((data) => console.log(data))
+// }
+
+const Login = (props) => {
   const AvatarStyle = { backgroundColor: colors.primary }
   const buttonArrange = {
     display: 'inline-block',
@@ -16,12 +38,11 @@ const Login = () => {
   const PaperStyle = {
     padding: 20,
     height: '45vh',
-    width: '40vh',
+    width: '35vh',
     margin: '20px auto',
     backgroundColor: colors.dialog,
   }
-  //   const [email, setEmail] = useState('')
-  //   const [password, setPassword] = useState('')
+
   const navigate = useNavigate()
 
   return (
@@ -33,6 +54,7 @@ const Login = () => {
           </Avatar>
           <h2>Sign In</h2>
         </Grid>
+
         <TextField
           id="username"
           variant="standard"
@@ -40,9 +62,9 @@ const Login = () => {
           placeholder="Enter username"
           fullWidth
           required
-          //   onChange={(event) => {
-          //     setEmail(event.target.value)
-          //   }}
+          // onChange={(event) => {
+          //   email(event.target.value)
+          // }}
         />
 
         <TextField
@@ -53,9 +75,9 @@ const Login = () => {
           type="password"
           fullWidth
           required
-          //   onChange={(event) => {
-          //     setPassword(event.target.value)
-          //   }}
+          // onChange={(event) => {
+          //   setPassword(event.target.value)
+          // }}
         />
         <br />
         <br />
@@ -70,11 +92,28 @@ const Login = () => {
           <Button
             type="submit"
             color="primary"
-            onClick={() => navigate('src/components/formPage.js')}
+            onClick={() => navigate('src/components/Form/UserForm.js')}
+            // onClick={() => {
+            //   // http://127.0.0.1:8000
+            //   const requestOptions = {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({
+            //       username: '',
+            //       email: email,
+            //       fullname: '',
+            //       password: password,
+            //     }),
+            //   }
+            //   fetch('http://127.0.0.1:8000/users/add', requestOptions)
+            //     .then((response) => response.json())
+            //     .then((data) => console.log(data))
+            // }}
           >
             Sign In as Client
           </Button>
         </div>
+        <div></div>
       </Paper>
     </Grid>
   )
