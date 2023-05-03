@@ -1,6 +1,7 @@
 const user = {
-  email: '',
-  username: '',
-  fullName: '',
-  password: '',
+  id: 1,
+  email: 'safd@gmail.com',
+  username: 'asdf',
+  fullName: 'asfd fsad',
+  password: 'adfsgfdg',
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
-import { AppBar, Dialog, Button, TextField } from '@mui/material'
+import { AppBar, Dialog, Button, TextField, MenuItem } from '@mui/material'
+import colors from '../Classes/colors'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 export class FormPersonalDetails extends Component {
   continue = (e) => {
@@ -15,52 +17,80 @@ export class FormPersonalDetails extends Component {
 
   render() {
     const { values, handleChange } = this.props
-    const buttonArrange = {
-      display: 'inline-block',
-      TextAlign: 'justify',
-      justifyContent: 'center',
-      alignItems: 'center',
+
+    const TextFieldStyle = {
+      width: '45%',
+      margin: 'auto',
+      position: 'relative',
+      justifyContent: 'left',
     }
+
+    const disableButton =
+      !values.categorie || !values.sediuPornire || !values.greutate // Check if any of the fields are empty
+
     return (
       <>
-        <Dialog open fullWidth maxWidth="sm">
-          <AppBar title="Enter Personal Details" />
-          <TextField
-            placeholder="Fragile / Precious / Dangerous"
-            label="Categorie"
-            onChange={handleChange('categorie')}
-            defaultValue={values.categorie}
-            margin="normal"
+        <ThemeProvider theme={colors}>
+          <Dialog
+            open
             fullWidth
-          />
-          <br />
-          <TextField
-            placeholder="Oradea"
-            label="Orasul de plecare"
-            onChange={handleChange('sediuPornire')}
-            defaultValue={values.sediuPornire}
-            margin="normal"
-            fullWidth
-          />
-          <br />
-          <TextField
-            placeholder="3"
-            label="Greutatea coletului"
-            onChange={handleChange('greutate')}
-            defaultValue={values.greutate}
-            margin="normal"
-          />
-          <br />
+            PaperProps={{
+              style: {
+                backgroundColor: colors.palette.dialog.main,
+                borderRadius: '1.2%',
+              },
+            }}
+          >
+            <br />
+            <TextField
+              style={TextFieldStyle}
+              label="Categorie"
+              value={values.categorie}
+              onChange={handleChange('categorie')}
+              margin="normal"
+              select
+            >
+              <MenuItem value="Fragile">Fragile</MenuItem>
+              <MenuItem value="Precious">Precious</MenuItem>
+              <MenuItem value="Dangerous">Dangerous</MenuItem>
+            </TextField>
+            <br />
+            <TextField
+              style={TextFieldStyle}
+              placeholder="Oradea"
+              label="Orasul de plecare"
+              onChange={handleChange('sediuPornire')}
+              defaultValue={values.sediuPornire}
+            />
+            <br />
+            <TextField
+              style={TextFieldStyle}
+              placeholder="1"
+              label="Greutatea coletului"
+              onChange={handleChange('greutate')}
+              defaultValue={values.greutate}
+              margin="normal"
+              type="number"
+              inputProps={{ min: 1, max: 3 }}
+            />
+            <br />
+            <br />
+            <br />
 
-          <div style={buttonArrange}>
             <Button color="secondary" variant="contained" onClick={this.back}>
               Back
             </Button>
-            <Button color="primary" variant="contained" onClick={this.continue}>
-              Continue
-            </Button>{' '}
-          </div>
-        </Dialog>
+            <br />
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={this.continue}
+              disabled={disableButton}
+            >
+              Submit
+            </Button>
+          </Dialog>
+        </ThemeProvider>
       </>
     )
   }

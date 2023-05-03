@@ -3,7 +3,8 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SecurityIcon from '@mui/icons-material/Security'
 import FileCopyIcon from '@mui/icons-material/FileCopy'
-import colors from './colors'
+import colors from '../Classes/colors'
+import { ThemeProvider } from '@emotion/react'
 
 const initialRows = [
   {
@@ -61,9 +62,7 @@ export default function ColumnTypesGrid() {
     },
     [],
   )
-  const columnsStyle = {
-    backgroundColor: colors.dialog,
-  }
+
   const columns = React.useMemo(
     () => [
       { field: 'name', type: 'string' },
@@ -108,8 +107,14 @@ export default function ColumnTypesGrid() {
   )
 
   return (
-    <div style={{ height: 300, width: '100%' }}>
-      <DataGrid style={columnsStyle} columns={columns} rows={rows} />
-    </div>
+    <ThemeProvider theme={colors}>
+      <div style={{ height: 400, width: '100%' }}>
+        <DataGrid
+          sx={{ backgroundColor: colors.palette.dialog.main }}
+          columns={columns}
+          rows={rows}
+        />
+      </div>
+    </ThemeProvider>
   )
 }

@@ -3,6 +3,7 @@ import FormUserDetails from './FormUserDetail.js'
 import FormPersonalDetails from './FormPersonalDetails.js'
 //import Success from './Succes.js'
 import Confirm from './Confirm.js'
+import Success from './Succes.js'
 export class UserForm extends Component {
   state = {
     step: 1,
@@ -71,6 +72,8 @@ export class UserForm extends Component {
             values={values}
           />
         )
+      case 4:
+        return <Success />
     }
   }
 }

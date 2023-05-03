@@ -6,8 +6,9 @@ import {
   List,
   ListItem,
   ListItemText,
+  ThemeProvider,
 } from '@mui/material'
-
+import colors from '../Classes/colors'
 export class Confirm extends Component {
   continue = (e) => {
     e.preventDefault()
@@ -21,6 +22,9 @@ export class Confirm extends Component {
   }
 
   render() {
+    const DialogStyle = {
+      backgroundColor: colors.dialog,
+    }
     const {
       values: {
         contact,
@@ -33,41 +37,59 @@ export class Confirm extends Component {
     } = this.props
     return (
       <>
-        <Dialog open fullWidth maxWidth="sm">
-          <AppBar title="Confirm User Data" />
-          <List>
-            <ListItem>
-              <ListItemText primary="First Name" secondary={contact} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Last Name" secondary={sediuPornire} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Email" secondary={destinatie} />
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary="Occupation"
-                secondary={contactDestinatar}
+        <ThemeProvider theme={colors}>
+          <Dialog
+            open
+            fullWidth
+            maxWidth="sm"
+            PaperComponent={(props) => (
+              <div
+                {...props}
+                style={{
+                  backgroundColor: colors.palette.dialog.main,
+                  borderRadius: '1.2%',
+                }}
               />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="City" secondary={greutate} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Bio" secondary={categorie} />
-            </ListItem>
-          </List>
-          <br />
+            )}
+          >
+            <AppBar title="Confirm User Data" />
+            <List>
+              <ListItem>
+                <ListItemText primary="Nume" secondary={contact} />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="Sediu de pornire"
+                  secondary={sediuPornire}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Destinatie" secondary={destinatie} />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="Contact destinatar"
+                  secondary={contactDestinatar}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Greutate" secondary={greutate} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Categorie" secondary={categorie} />
+              </ListItem>
+            </List>
+            <br />
 
-          <Button color="secondary" variant="contained" onClick={this.back}>
-            Back
-          </Button>
-
-          <Button color="primary" variant="contained" onClick={this.continue}>
-            Confirm & Continue
-          </Button>
-        </Dialog>
+            <Button color="secondary" variant="contained" onClick={this.back}>
+              Back
+            </Button>
+            <br />
+            <Button color="primary" variant="contained" onClick={this.continue}>
+              Confirm & Continue
+            </Button>
+          </Dialog>
+        </ThemeProvider>
       </>
     )
   }

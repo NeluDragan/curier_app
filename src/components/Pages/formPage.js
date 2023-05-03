@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import colors from './colors'
+import colors from '../Classes/colors'
 import UserForm from '../Form/UserForm'
 
 const formPage = () => {
