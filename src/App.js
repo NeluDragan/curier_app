@@ -24,7 +24,6 @@ function App() {
             <Route path="/curierPage" element={<Curier />} />
             <Route path="/clientPage" element={<Client />} />
             <Route path="/curierSlider" element={<CurierSlider />} />
-            <Route path="/loginPage" element={<Login />} />
           </Routes>
         </Router>
       </header>

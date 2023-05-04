@@ -44,10 +44,10 @@ const CurierSlider = () => {
         max={max}
         sx={{
           '& .MuiSlider-track': {
-            color: colors.palette.secondary.main,
+            color: colors.palette.buttons.main,
           },
           '& .MuiSlider-thumb': {
-            color: colors.palette.secondary.main,
+            color: colors.palette.buttons.main,
           },
         }}
       />
@@ -55,7 +55,7 @@ const CurierSlider = () => {
         variant="contained"
         disabled={sliderValue === max}
         onClick={handleButtonClick}
-        sx={{ backgroundColor: colors.palette.secondary.main }}
+        sx={{ backgroundColor: colors.palette.buttons.main }}
       >
         Increase by one step
       </Button>

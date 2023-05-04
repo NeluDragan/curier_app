@@ -1,14 +1,11 @@
 import React from 'react'
 import DataTable from '../comp/dataGrid'
-import { useNavigate } from 'react-router-dom'
 import { ThemeProvider } from '@emotion/react'
 import colors from '../Classes/colors'
 import CurierSlider from '../comp/curierSlider'
 import './adminPage.css'
 
 const AdminPage = () => {
-  const navigate = useNavigate()
-
   return (
     <div className="admin-page-container">
       <ThemeProvider theme={colors}>

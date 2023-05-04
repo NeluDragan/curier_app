@@ -1,5 +1,4 @@
 import React from 'react'
-import user from './user'
 function UserProfile(props) {
   const { email, username, fullName } = props.user
 

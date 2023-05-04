@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { Dialog, AppBar, Button } from '@mui/material'
 import colors from '../Classes/colors'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider } from '@mui/material/styles'
 
 export class Success extends Component {
   continue = (e) => {
     e.preventDefault()
-    // PROCESS FORM //
     this.props.nextStep()
   }
 
@@ -16,9 +15,6 @@ export class Success extends Component {
   }
 
   render() {
-    const DialogStyle = {
-      backgroundColor: colors.dialog,
-    }
     return (
       <>
         <ThemeProvider theme={colors}>

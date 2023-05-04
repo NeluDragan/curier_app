@@ -8,21 +8,28 @@ import {
   ThemeProvider,
 } from '@mui/material'
 import LockIcon from '@mui/icons-material/Lock'
-import { useNavigate } from 'react-router-dom'
 import colors from '../Classes/colors'
 import { useState } from 'react'
-import UserProfile from '../Classes/UserProfile'
-import user from '../Classes/user'
 
-//import { useState } from 'react'
+const f = ({ endpoint, email, password }) => {
+  const formData = new URLSearchParams()
+  formData.append('username', email)
+  formData.append('password', password)
+
+  fetch('http://127.0.0.1:8000' + endpoint, {
+    method: 'POST',
+    headers: {
+      //"Authorization":
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Accept: 'application/json',
+    },
+    body: formData.toString(),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+}
 
 // const f = ({ endpoint, body }) => {
-//   // {
-//   //   username: '',
-//   //   email: email,
-//   //   fullname: '',
-//   //   password: password,
-//   // }
 //   const requestOptions = {
 //     method: 'POST',
 //     headers: { 'Content-Type': 'application/json' },
@@ -34,6 +41,8 @@ import user from '../Classes/user'
 // }
 
 const Login = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const buttonArrange = {
     display: 'inline-block',
     TextAlign: 'justify',
@@ -47,7 +56,7 @@ const Login = () => {
     width: '35vh',
     margin: '20px auto',
   }
-  const navigate = useNavigate()
+
   return (
     <ThemeProvider theme={colors}>
       <Grid>
@@ -64,28 +73,28 @@ const Login = () => {
           </Grid>
 
           <TextField
-            id="username"
+            id="gmail"
             variant="standard"
-            label="Username"
-            placeholder="Enter username"
+            label="Gmail"
+            placeholder="example@gmail.com"
             fullWidth
             required
-            // onChange={(event) => {
-            //   email(event.target.value)
-            // }}
+            onChange={(event) => {
+              setEmail(event.target.value)
+            }}
           />
 
           <TextField
             id="password"
             variant="standard"
             label="Password"
-            placeholder="Enter password"
+            placeholder="************"
             type="password"
             fullWidth
             required
-            // onChange={(event) => {
-            //   setPassword(event.target.value)
-            // }}
+            onChange={(event) => {
+              setPassword(event.target.value)
+            }}
           />
           <br />
           <br />
@@ -93,7 +102,13 @@ const Login = () => {
             <Button
               type="submit"
               color="primary"
-              onClick={() => navigate('/adminPage')}
+              onClick={() =>
+                f({
+                  endpoint: '/token',
+                  email: email,
+                  password: password,
+                })
+              }
             >
               Sign In
             </Button>

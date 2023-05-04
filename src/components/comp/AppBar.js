@@ -18,7 +18,6 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import colors from '../Classes/colors'
-import { Link } from 'react-router-dom'
 
 const Appbar = ({ user, setUser }) => {
   const [open, setOpen] = useState(false)
