@@ -73,7 +73,7 @@ export class FormUserDetails extends Component {
             <br />
             <TextField
               style={TextFieldStyle}
-              label="Judet"
+              label="Destinatie"
               select
               onChange={handleChange('destinatie')}
               value={values.destinatie}

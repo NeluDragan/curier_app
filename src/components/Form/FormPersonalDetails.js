@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import judete from '../Classes/judete'
 import { AppBar, Dialog, Button, TextField, MenuItem } from '@mui/material'
 import colors from '../Classes/colors'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
@@ -57,11 +57,18 @@ export class FormPersonalDetails extends Component {
             <br />
             <TextField
               style={TextFieldStyle}
-              placeholder="Oradea"
-              label="Orasul de plecare"
+              label="Sediu pornire"
+              select
               onChange={handleChange('sediuPornire')}
-              defaultValue={values.sediuPornire}
-            />
+              value={values.sediuPornire}
+            >
+              {judete.map((judet) => (
+                <MenuItem key={judet} value={judet}>
+                  {judet}
+                </MenuItem>
+              ))}
+            </TextField>
+
             <br />
             <TextField
               style={TextFieldStyle}
