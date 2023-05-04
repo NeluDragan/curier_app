@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import {
   AppBar,
   Toolbar,
@@ -10,21 +9,34 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Button,
   ThemeProvider,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import colors from '../Classes/colors'
 import { Link } from 'react-router-dom'
 
 const Appbar = ({ user, setUser }) => {
   const [open, setOpen] = useState(false)
 
-  function handleClick(path) {
-    return <Link to={path} />
+  const renderPageTitle = () => {
+    if (window.location.pathname === '/formPage') {
+      return 'Form page'
+    } else if (window.location.pathname === '/curierPage') {
+      return 'Curier page'
+    } else if (window.location.pathname === '/clientPage') {
+      return 'Client page'
+    } else if (window.location.pathname === '/adminPage') {
+      return 'Admin page'
+    } else {
+      return 'CurierApp'
+    }
   }
-  handleClick('src/components/Form/UserForm.js')
+
   const handleDrawerOpen = () => {
     setOpen(true)
   }
@@ -46,34 +58,57 @@ const Appbar = ({ user, setUser }) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6">CurierApp</Typography>
+            <Typography variant="h6">{renderPageTitle()}</Typography>
+            <Button color="inherit" style={{ marginLeft: 'auto' }}>
+              Login
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
           <List>
-            <ListItem button onClick={() => handleClick('/form')}>
+            <ListItem
+              button
+              onClick={() => {
+                window.location.href = '/formPage'
+              }}
+            >
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary="Form" />
+              <ListItemText primary="Form page" />
             </ListItem>
-            <ListItem button onClick={() => handleClick('/curier')}>
+            <ListItem
+              button
+              onClick={() => {
+                window.location.href = '/curierPage'
+              }}
+            >
               <ListItemIcon>
-                <MailIcon />
+                <LocalShippingIcon />
               </ListItemIcon>
-              <ListItemText primary="Curier" />
+              <ListItemText primary="Curier page" />
             </ListItem>
-            <ListItem button onClick={() => handleClick('/client')}>
+            <ListItem
+              button
+              onClick={() => {
+                window.location.href = '/clientPage'
+              }}
+            >
               <ListItemIcon>
-                <MailIcon />
+                <AccountCircleIcon />
               </ListItemIcon>
-              <ListItemText primary="Client" />
+              <ListItemText primary="Client page" />
             </ListItem>
-            <ListItem button onClick={() => handleClick('/Form')}>
+            <ListItem
+              button
+              onClick={() => {
+                window.location.href = '/adminPage'
+              }}
+            >
               <ListItemIcon>
-                <MailIcon />
+                <SupervisorAccountIcon />
               </ListItemIcon>
-              <ListItemText primary="Admin" />
+              <ListItemText primary="Admin page" />
             </ListItem>
           </List>
         </Drawer>

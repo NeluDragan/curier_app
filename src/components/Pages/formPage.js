@@ -8,9 +8,6 @@ const formPage = () => {
   return (
     <div>
       <UserForm></UserForm>
-      <button color={colors.buttons} onClick={() => navigate(-1)}>
-        Log out
-      </button>
     </div>
   )
 }

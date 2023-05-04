@@ -3,18 +3,26 @@ import DataTable from '../comp/dataGrid'
 import { useNavigate } from 'react-router-dom'
 import { ThemeProvider } from '@emotion/react'
 import colors from '../Classes/colors'
+import CurierSlider from '../comp/curierSlider'
+import './adminPage.css'
 
-const adminPage = () => {
+const AdminPage = () => {
   const navigate = useNavigate()
+
   return (
-    <div>
+    <div className="admin-page-container">
       <ThemeProvider theme={colors}>
-        <DataTable />
-        <button type="submit" color="primary" onClick={() => navigate(-1)}>
-          Sign out
-        </button>
+        <div className="table-container">
+          <h3>Admin Grid</h3>
+          <DataTable />
+        </div>
+        <div>
+          <h3>Curier Slider</h3>
+          <CurierSlider />
+        </div>
       </ThemeProvider>
     </div>
   )
 }
-export default adminPage
+
+export default AdminPage

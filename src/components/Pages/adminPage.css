@@ -1,0 +1,19 @@
+.admin-page-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.curier-slider {
+  margin-left: 20px;
+}
+
+.data-table {
+  margin-right: 20px;
+}
+
+.table-container {
+  padding: 16px;
+}

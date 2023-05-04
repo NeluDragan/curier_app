@@ -6,6 +6,10 @@ import Form from './components/Pages/formPage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import UserForm from './components/Form/UserForm'
 import Appbar from './components/comp/AppBar'
+import Curier from './components/Pages/curierPage'
+import Client from './components/Pages/clientPage'
+import CurierSlider from './components/comp/curierSlider'
+
 function App() {
   return (
     <div className="App">
@@ -14,12 +18,13 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="src/components/main.js" element={<Admin />} />
-            <Route path="src/components/formPage.js" element={<Form />} />
-            <Route
-              path="src/components/Form/UserForm.js"
-              element={<UserForm />}
-            />
+            <Route path="/adminPage" element={<Admin />} />
+            <Route path="/formPage" element={<Form />} />
+            <Route path="/userForm" element={<UserForm />} />
+            <Route path="/curierPage" element={<Curier />} />
+            <Route path="/clientPage" element={<Client />} />
+            <Route path="/curierSlider" element={<CurierSlider />} />
+            <Route path="/loginPage" element={<Login />} />
           </Routes>
         </Router>
       </header>

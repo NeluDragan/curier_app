@@ -93,32 +93,9 @@ const Login = () => {
             <Button
               type="submit"
               color="primary"
-              onClick={() => navigate('src/components/main.js')}
+              onClick={() => navigate('/adminPage')}
             >
-              Sign In as Admin
-            </Button>
-            <Button
-              type="submit"
-              color="primary"
-              onClick={() => navigate('src/components/Form/UserForm.js')}
-              // onClick={() => {
-              //   // http://127.0.0.1:8000
-              //   const requestOptions = {
-              //     method: 'POST',
-              //     headers: { 'Content-Type': 'application/json' },
-              //     body: JSON.stringify({
-              //       username: '',
-              //       email: email,
-              //       fullname: '',
-              //       password: password,
-              //     }),
-              //   }
-              //   fetch('http://127.0.0.1:8000/users/add', requestOptions)
-              //     .then((response) => response.json())
-              //     .then((data) => console.log(data))
-              // }}
-            >
-              Sign In as Client
+              Sign In
             </Button>
           </div>
           <div></div>

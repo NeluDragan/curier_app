@@ -1,9 +1,10 @@
 import React from 'react'
-
+import CurierSlider from '../comp/curierSlider'
 const CurierPage = () => {
   return (
     <div>
-      <button>Home</button>
+      <h1>CurierPage</h1>
+      <CurierSlider />
     </div>
   )
 }
