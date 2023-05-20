@@ -5,38 +5,23 @@ import SecurityIcon from '@mui/icons-material/Security'
 import FileCopyIcon from '@mui/icons-material/FileCopy'
 import colors from '../Classes/colors'
 import { ThemeProvider } from '@emotion/react'
+import { get } from '../connections/httpCon'
+import { User } from '../Classes/user'
 
-const initialRows = [
-  {
-    id: 1,
-    name: 'Damien',
-    age: 25,
-    isAdmin: true,
-    role: 'Admin',
-  },
-  {
-    id: 2,
-    name: 'Nicolas',
-    age: 36,
-    isAdmin: false,
-    role: 'Client',
-  },
-  {
-    id: 3,
-    name: 'Kate',
-    age: 19,
-    isAdmin: false,
-    role: 'Curier',
-  },
-]
+const ColumnTypesGrid = () => {
+  const [users, setUsers] = React.useState([])
 
-export default function ColumnTypesGrid() {
-  const [rows, setRows] = React.useState(initialRows)
+  React.useEffect(() => {
+    get('/users/all_users').then((data) => {
+      const raw_users = data.map(User.fromJSON)
+      setUsers(raw_users)
+    })
+  })
 
   const deleteUser = React.useCallback(
     (id) => () => {
       setTimeout(() => {
-        setRows((prevRows) => prevRows.filter((row) => row.id !== id))
+        setUsers((prevRows) => prevRows.filter((row) => row.id !== id))
       })
     },
     [],
@@ -44,7 +29,7 @@ export default function ColumnTypesGrid() {
 
   const toggleAdmin = React.useCallback(
     (id) => () => {
-      setRows((prevRows) =>
+      setUsers((prevRows) =>
         prevRows.map((row) =>
           row.id === id ? { ...row, isAdmin: !row.isAdmin } : row,
         ),
@@ -55,7 +40,7 @@ export default function ColumnTypesGrid() {
 
   const duplicateUser = React.useCallback(
     (id) => () => {
-      setRows((prevRows) => {
+      setUsers((prevRows) => {
         const rowToDuplicate = prevRows.find((row) => row.id === id)
         return [...prevRows, { ...rowToDuplicate, id: Date.now() }]
       })
@@ -65,8 +50,8 @@ export default function ColumnTypesGrid() {
 
   const columns = React.useMemo(
     () => [
-      { field: 'name', type: 'string' },
-      { field: 'age', type: 'number' },
+      { field: 'username', type: 'string' },
+      { field: 'email', type: 'string' },
       { field: 'isAdmin', type: 'boolean', width: 120 },
       {
         field: 'role',
@@ -112,9 +97,11 @@ export default function ColumnTypesGrid() {
         <DataGrid
           sx={{ backgroundColor: colors.palette.dialog.main }}
           columns={columns}
-          rows={rows}
+          rows={users}
         />
       </div>
     </ThemeProvider>
   )
 }
+
+export default ColumnTypesGrid

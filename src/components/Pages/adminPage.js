@@ -1,5 +1,5 @@
 import React from 'react'
-import DataTable from '../comp/dataGrid'
+import ColumnTypesGrid from '../comp/dataGrid'
 import { ThemeProvider } from '@emotion/react'
 import colors from '../Classes/colors'
 import CurierSlider from '../comp/curierSlider'
@@ -11,7 +11,7 @@ const AdminPage = () => {
       <ThemeProvider theme={colors}>
         <div className="table-container">
           <h3>Admin Grid</h3>
-          <DataTable />
+          <ColumnTypesGrid />
         </div>
         <div>
           <h3>Curier Slider</h3>

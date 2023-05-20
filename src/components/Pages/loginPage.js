@@ -10,35 +10,8 @@ import {
 import LockIcon from '@mui/icons-material/Lock'
 import colors from '../Classes/colors'
 import { useState } from 'react'
-
-const f = ({ endpoint, email, password }) => {
-  const formData = new URLSearchParams()
-  formData.append('username', email)
-  formData.append('password', password)
-
-  fetch('http://127.0.0.1:8000' + endpoint, {
-    method: 'POST',
-    headers: {
-      //"Authorization":
-      'Content-Type': 'application/x-www-form-urlencoded',
-      Accept: 'application/json',
-    },
-    body: formData.toString(),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-}
-
-// const f = ({ endpoint, body }) => {
-//   const requestOptions = {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(body),
-//   }
-//   fetch('http://127.0.0.1:8000/' + endpoint, requestOptions)
-//     .then((response) => response.json())
-//     .then((data) => console.log(data))
-// }
+import { auth, getAccessToken } from '../connections/httpCon'
+import AdminPage from './adminPage'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -102,13 +75,15 @@ const Login = () => {
             <Button
               type="submit"
               color="primary"
-              onClick={() =>
-                f({
-                  endpoint: '/token',
+              onClick={async () => {
+                await auth({
                   email: email,
                   password: password,
                 })
-              }
+                if (getAccessToken()) {
+                  window.location.href = '/adminPage'
+                }
+              }}
             >
               Sign In
             </Button>
